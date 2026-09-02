@@ -63,12 +63,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFFE90520),
+        backgroundColor: Color(0xFA9A5454),
         body: Stack(
           children: [
             Container(
               width: double.infinity,
-              height: 350.0,
+              height: 851.44,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(),
               ),
@@ -77,9 +77,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                 child: Image.asset(
                   'assets/images/WhatsApp_Image_2026-09-02_at_10.11.01.jpeg',
                   width: 200.0,
-                  height: 200.0,
-                  fit: BoxFit.cover,
-                  alignment: Alignment(-1.0, -1.0),
+                  height: 319.28,
+                  fit: BoxFit.fitHeight,
+                  alignment: Alignment(0.0, 0.0),
                 ),
               ),
             ),
@@ -92,7 +92,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                     width: double.infinity,
                     height: 500.0,
                     decoration: BoxDecoration(
-                      color: Color(0x90D19999),
+                      gradient: LinearGradient(
+                        colors: [Color(0xCCF4DC01), Color(0x88F2071B)],
+                        stops: [0.0, 1.0],
+                        begin: AlignmentDirectional(0.0, -1.0),
+                        end: AlignmentDirectional(0, 1.0),
+                      ),
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                     child: Column(
@@ -100,8 +105,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         Align(
                           alignment: Alignment(0.0, 0),
                           child: TabBar(
-                            labelColor:
-                                FlutterFlowTheme.of(context).primaryText,
+                            labelColor: Color(0xFF0C0B00),
                             unselectedLabelColor:
                                 FlutterFlowTheme.of(context).primaryBackground,
                             labelStyle: FlutterFlowTheme.of(context)
@@ -472,7 +476,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             iconPadding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
-                                            color: Color(0xFFFBBA03),
+                                            color: Color(0xFF0B0000),
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmall
@@ -490,7 +494,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                 .titleSmall
                                                                 .fontStyle,
                                                       ),
-                                                      color: Color(0xFFFF0505),
+                                                      color: Color(0xFFFEF9F9),
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FlutterFlowTheme.of(
@@ -538,37 +542,13 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: Color(0x00FBBA03),
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      font: GoogleFonts
-                                                          .openSansCondensed(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontStyle,
-                                                      ),
-                                                      color: Color(0xFF080707),
-                                                      fontSize: 12.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontStyle,
-                                                    ),
+                                            textStyle: GoogleFonts.roboto(
+                                              color: Color(0x00000000),
+                                              fontSize: 0.0,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              fontStyle: FontStyle.normal,
+                                            ),
                                             elevation: 0.0,
                                             borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(10.0),
@@ -788,9 +768,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         activeColor:
                                             FlutterFlowTheme.of(context)
                                                 .primaryText,
-                                        inactiveColor:
-                                            FlutterFlowTheme.of(context)
-                                                .alternate,
+                                        inactiveColor: Color(0xFFEFDADA),
                                         selectedColor:
                                             FlutterFlowTheme.of(context)
                                                 .primary,
