@@ -100,8 +100,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         Align(
                           alignment: Alignment(0.0, 0),
                           child: TabBar(
-                            labelColor: Color(0xFFFF0202),
-                            unselectedLabelColor: Color(0xFF060606),
+                            labelColor:
+                                FlutterFlowTheme.of(context).primaryText,
+                            unselectedLabelColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             labelStyle: FlutterFlowTheme.of(context)
                                 .titleMedium
                                 .override(
@@ -142,8 +144,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       .titleMedium
                                       .fontStyle,
                                 ),
-                            indicatorColor:
-                                FlutterFlowTheme.of(context).primary,
+                            indicatorColor: Colors.black,
+                            indicatorWeight: 3.0,
                             tabs: [
                               Tab(
                                 text: 'Login',
