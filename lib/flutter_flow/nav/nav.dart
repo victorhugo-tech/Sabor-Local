@@ -33,39 +33,45 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => appStateNotifier.showSplashImage
-          ? Builder(
-              builder: (context) => Container(
-                color: Colors.transparent,
-                child: Image.asset(
-                  'assets/images/sabor_local.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            )
-          : HomePageWidget(),
+      errorBuilder: (context, state) => VideoSplashWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.showSplashImage
-              ? Builder(
-                  builder: (context) => Container(
-                    color: Colors.transparent,
-                    child: Image.asset(
-                      'assets/images/sabor_local.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                )
-              : HomePageWidget(),
+          builder: (context, _) => VideoSplashWidget(),
         ),
         FFRoute(
           name: HomePageWidget.routeName,
           path: HomePageWidget.routePath,
           builder: (context, params) => HomePageWidget(),
+        ),
+        FFRoute(
+          name: CadastroWidget.routeName,
+          path: CadastroWidget.routePath,
+          builder: (context, params) => CadastroWidget(),
+        ),
+        FFRoute(
+          name: VideoSplashWidget.routeName,
+          path: VideoSplashWidget.routePath,
+          builder: (context, params) => VideoSplashWidget(),
+        ),
+        FFRoute(
+          name: VerificaoemailWidget.routeName,
+          path: VerificaoemailWidget.routePath,
+          builder: (context, params) => VerificaoemailWidget(),
+        ),
+        FFRoute(
+          name: EnderecoWidget.routeName,
+          path: EnderecoWidget.routePath,
+          builder: (context, params) => EnderecoWidget(),
+        ),
+        FFRoute(
+          name: MenupedidosWidget.routeName,
+          path: MenupedidosWidget.routePath,
+          builder: (context, params) => MenupedidosWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
+      observers: ffNavigatorObservers,
     );
 
 extension NavParamExtensions on Map<String, String?> {
