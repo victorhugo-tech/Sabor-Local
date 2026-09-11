@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -150,6 +151,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                     '_model.textFieldcepTextController',
                                     Duration(milliseconds: 2000),
                                     () async {
+                                      var _shouldSetState = false;
                                       safeSetState(() {
                                         _model.textFieldcepTextController
                                                 ?.text =
@@ -163,42 +165,83 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                           ),
                                         );
                                       });
-                                      _model.apiresultadocep =
-                                          await CepCall.call(
+                                      _model.apiResultiuj = await CepCall.call(
                                         cep: _model
                                             .textFieldcepTextController.text,
                                       );
 
-                                      safeSetState(() {
-                                        _model.textFieldlogradouroTextController
-                                            ?.text = CepCall.rua(
-                                          (_model.apiresultadocep?.jsonBody ??
-                                              ''),
-                                        )!;
-                                      });
-                                      safeSetState(() {
-                                        _model.textFieldbairroTextController
-                                            ?.text = CepCall.bairro(
-                                          (_model.apiresultadocep?.jsonBody ??
-                                              ''),
-                                        )!;
-                                      });
-                                      safeSetState(() {
-                                        _model.textFieldcidadeTextController
-                                            ?.text = CepCall.cidade(
-                                          (_model.apiresultadocep?.jsonBody ??
-                                              ''),
-                                        )!;
-                                      });
-                                      safeSetState(() {
-                                        _model.textFieldufTextController?.text =
-                                            CepCall.uf(
-                                          (_model.apiresultadocep?.jsonBody ??
-                                              ''),
-                                        )!;
-                                      });
+                                      _shouldSetState = true;
+                                      if ((_model.apiResultiuj?.succeeded ??
+                                          true)) {
+                                        safeSetState(() {
+                                          _model
+                                              .textFieldlogradouroTextController
+                                              ?.text = CepCall.rua(
+                                            (_model.apiResultiuj?.jsonBody ??
+                                                ''),
+                                          )!;
+                                        });
+                                        safeSetState(() {
+                                          _model.textFieldbairroTextController
+                                              ?.text = CepCall.bairro(
+                                            (_model.apiResultiuj?.jsonBody ??
+                                                ''),
+                                          )!;
+                                        });
+                                        safeSetState(() {
+                                          _model.textFieldcidadeTextController
+                                              ?.text = CepCall.cidade(
+                                            (_model.apiResultiuj?.jsonBody ??
+                                                ''),
+                                          )!;
+                                        });
+                                        safeSetState(() {
+                                          _model.textFieldufTextController
+                                              ?.text = CepCall.uf(
+                                            (_model.apiResultiuj?.jsonBody ??
+                                                ''),
+                                          )!;
+                                        });
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'CEP ENCONTRADO!',
+                                              style: GoogleFonts.roboto(
+                                                color: Color(0xFF040001),
+                                              ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
+                                          ),
+                                        );
+                                        if (_shouldSetState)
+                                          safeSetState(() {});
+                                        return;
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'CEP NÃO ENCONTRADO!',
+                                              style: GoogleFonts.roboto(
+                                                color: Color(0xFF090909),
+                                              ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 4000),
+                                            backgroundColor: Color(0xFFF8070C),
+                                          ),
+                                        );
+                                        if (_shouldSetState)
+                                          safeSetState(() {});
+                                        return;
+                                      }
 
-                                      safeSetState(() {});
+                                      if (_shouldSetState) safeSetState(() {});
                                     },
                                   ),
                                   autofocus: false,
@@ -229,7 +272,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                                   .labelMedium
                                                   .fontStyle,
                                         ),
-                                    hintText: 'cep',
+                                    hintText: 'CEP',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -352,6 +395,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                       _model.textFieldlogradouroFocusNode,
                                   autofocus: false,
                                   enabled: true,
+                                  readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     isDense: true,
@@ -378,7 +422,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                                   .labelMedium
                                                   .fontStyle,
                                         ),
-                                    hintText: 'logradouro',
+                                    hintText: 'Logradouro',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -621,6 +665,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                             .bodyMedium
                                             .fontStyle,
                                       ),
+                                  keyboardType: TextInputType.number,
                                   cursorColor:
                                       FlutterFlowTheme.of(context).primaryText,
                                   enableInteractiveSelection: true,
@@ -665,7 +710,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                                   .labelMedium
                                                   .fontStyle,
                                         ),
-                                    hintText: 'complemento',
+                                    hintText: 'Complemento',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -783,6 +828,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                   focusNode: _model.textFieldbairroFocusNode,
                                   autofocus: false,
                                   enabled: true,
+                                  readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     isDense: true,
@@ -809,7 +855,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                                   .labelMedium
                                                   .fontStyle,
                                         ),
-                                    hintText: 'bairro',
+                                    hintText: 'Bairro',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -928,6 +974,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                   focusNode: _model.textFieldcidadeFocusNode,
                                   autofocus: false,
                                   enabled: true,
+                                  readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     isDense: true,
@@ -1072,6 +1119,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                   focusNode: _model.textFieldufFocusNode,
                                   autofocus: false,
                                   enabled: true,
+                                  readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     isDense: true,
@@ -1098,7 +1146,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                                   .labelMedium
                                                   .fontStyle,
                                         ),
-                                    hintText: 'estado',
+                                    hintText: 'Estado',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -1212,8 +1260,8 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 20.0, 0.0, 0.0),
                           child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              context.pushNamed(HomePageWidget.routeName);
                             },
                             text: 'Cadastrar',
                             icon: Icon(
