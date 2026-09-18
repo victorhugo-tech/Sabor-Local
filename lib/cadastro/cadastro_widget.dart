@@ -1,7 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,15 +38,14 @@ class _CadastroWidgetState extends State<CadastroWidget> {
     _model.textFieldFocusNode2 ??= FocusNode();
 
     _model.textFieldMask2 = MaskTextInputFormatter(mask: '(##) # ####-####');
-    _model.textController3 ??= TextEditingController();
+    _model.textFieldCPFTextController ??= TextEditingController();
+    _model.textFieldCPFFocusNode ??= FocusNode();
+
+    _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
 
-    _model.textFieldMask3 = MaskTextInputFormatter(mask: '###.###.### - ##');
-    _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
-
     _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode5 ??= FocusNode();
+    _model.textFieldFocusNode4 ??= FocusNode();
   }
 
   @override
@@ -249,8 +250,7 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                           .bodyMedium
                                           .fontStyle,
                                     ),
-                                cursorColor:
-                                    FlutterFlowTheme.of(context).primaryText,
+                                cursorColor: Colors.black,
                                 enableInteractiveSelection: true,
                                 validator: _model.textController1Validator
                                     .asValidator(context),
@@ -399,8 +399,7 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                         maxLength}) =>
                                     null,
                                 keyboardType: TextInputType.number,
-                                cursorColor:
-                                    FlutterFlowTheme.of(context).primaryText,
+                                cursorColor: Color(0xFF050505),
                                 enableInteractiveSelection: true,
                                 validator: _model.textController2Validator
                                     .asValidator(context),
@@ -417,8 +416,50 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                             child: Container(
                               width: 300.0,
                               child: TextFormField(
-                                controller: _model.textController3,
-                                focusNode: _model.textFieldFocusNode3,
+                                controller: _model.textFieldCPFTextController,
+                                focusNode: _model.textFieldCPFFocusNode,
+                                onChanged: (_) => EasyDebounce.debounce(
+                                  '_model.textFieldCPFTextController',
+                                  Duration(milliseconds: 2000),
+                                  () async {
+                                    if (functions.validaCPF(_model
+                                        .textFieldCPFTextController.text)) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'CPF Valido!',
+                                            style: TextStyle(
+                                              color: Color(0xFF040404),
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 5000),
+                                          backgroundColor: Color(0xFF4CFF00),
+                                        ),
+                                      );
+                                      return;
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'CPF INVALIDO',
+                                            style: TextStyle(
+                                              color: Color(0xFF090909),
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor: Color(0xFFF50D05),
+                                        ),
+                                      );
+                                      return;
+                                    }
+                                  },
+                                ),
                                 autofocus: false,
                                 enabled: true,
                                 obscureText: false,
@@ -541,20 +582,20 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                           .bodyMedium
                                           .fontStyle,
                                     ),
-                                maxLength: 13,
-                                maxLengthEnforcement: MaxLengthEnforcement.none,
+                                maxLength: 11,
+                                maxLengthEnforcement:
+                                    MaxLengthEnforcement.enforced,
                                 buildCounter: (context,
                                         {required currentLength,
                                         required isFocused,
                                         maxLength}) =>
                                     null,
                                 keyboardType: TextInputType.number,
-                                cursorColor:
-                                    FlutterFlowTheme.of(context).primaryText,
+                                cursorColor: Color(0xFF0C0C0C),
                                 enableInteractiveSelection: true,
-                                validator: _model.textController3Validator
+                                validator: _model
+                                    .textFieldCPFTextControllerValidator
                                     .asValidator(context),
-                                inputFormatters: [_model.textFieldMask3],
                               ),
                             ),
                           ),
@@ -568,7 +609,7 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                               width: 300.0,
                               child: TextFormField(
                                 controller: _model.textController4,
-                                focusNode: _model.textFieldFocusNode4,
+                                focusNode: _model.textFieldFocusNode3,
                                 autofocus: false,
                                 enabled: true,
                                 obscureText: false,
@@ -691,8 +732,7 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                           .bodyMedium
                                           .fontStyle,
                                     ),
-                                cursorColor:
-                                    FlutterFlowTheme.of(context).primaryText,
+                                cursorColor: Color(0xFF060606),
                                 enableInteractiveSelection: true,
                                 validator: _model.textController4Validator
                                     .asValidator(context),
@@ -706,7 +746,7 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                             width: 300.0,
                             child: TextFormField(
                               controller: _model.textController5,
-                              focusNode: _model.textFieldFocusNode5,
+                              focusNode: _model.textFieldFocusNode4,
                               autofocus: false,
                               enabled: true,
                               obscureText: !_model.passwordVisibility,
@@ -841,8 +881,7 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                         .bodyMedium
                                         .fontStyle,
                                   ),
-                              cursorColor:
-                                  FlutterFlowTheme.of(context).primaryText,
+                              cursorColor: Color(0xFF020202),
                               enableInteractiveSelection: true,
                               validator: _model.textController5Validator
                                   .asValidator(context),

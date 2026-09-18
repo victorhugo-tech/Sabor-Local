@@ -373,8 +373,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                             .fontStyle,
                                       ),
                                   keyboardType: TextInputType.number,
-                                  cursorColor:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  cursorColor: Color(0xFF060606),
                                   enableInteractiveSelection: true,
                                   validator: _model
                                       .textFieldcepTextControllerValidator
@@ -521,8 +520,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                             .bodyMedium
                                             .fontStyle,
                                       ),
-                                  cursorColor:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  cursorColor: Color(0xFF050505),
                                   enableInteractiveSelection: true,
                                   validator: _model
                                       .textFieldlogradouroTextControllerValidator
@@ -666,8 +664,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                             .fontStyle,
                                       ),
                                   keyboardType: TextInputType.number,
-                                  cursorColor:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  cursorColor: Color(0xFF040404),
                                   enableInteractiveSelection: true,
                                   validator: _model.textController3Validator
                                       .asValidator(context),
@@ -809,8 +806,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                             .bodyMedium
                                             .fontStyle,
                                       ),
-                                  cursorColor:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  cursorColor: Colors.black,
                                   enableInteractiveSelection: true,
                                   validator: _model.textController4Validator
                                       .asValidator(context),
@@ -954,8 +950,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                             .bodyMedium
                                             .fontStyle,
                                       ),
-                                  cursorColor:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  cursorColor: Color(0xFF0A0A0A),
                                   enableInteractiveSelection: true,
                                   validator: _model
                                       .textFieldbairroTextControllerValidator
@@ -1100,8 +1095,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                             .bodyMedium
                                             .fontStyle,
                                       ),
-                                  cursorColor:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  cursorColor: Color(0xFF050505),
                                   enableInteractiveSelection: true,
                                   validator: _model
                                       .textFieldcidadeTextControllerValidator
@@ -1245,8 +1239,7 @@ class _EnderecoWidgetState extends State<EnderecoWidget> {
                                             .bodyMedium
                                             .fontStyle,
                                       ),
-                                  cursorColor:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  cursorColor: Color(0xFF050505),
                                   enableInteractiveSelection: true,
                                   validator: _model
                                       .textFieldufTextControllerValidator

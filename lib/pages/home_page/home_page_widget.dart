@@ -235,7 +235,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   .bodyMedium
                                   .fontStyle,
                             ),
-                        cursorColor: FlutterFlowTheme.of(context).primaryText,
+                        cursorColor: Color(0xFF0A0A0A),
                         enableInteractiveSelection: true,
                         validator: _model.textController1Validator
                             .asValidator(context),
@@ -375,7 +375,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 .bodyMedium
                                 .fontStyle,
                           ),
-                      cursorColor: FlutterFlowTheme.of(context).primaryText,
+                      cursorColor: Color(0xFF090909),
                       enableInteractiveSelection: true,
                       validator:
                           _model.textController2Validator.asValidator(context),

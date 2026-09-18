@@ -109,6 +109,7 @@ class _VerificaoemailWidgetState extends State<VerificaoemailWidget> {
                                         .bodyLarge
                                         .fontStyle,
                                   ),
+                                  color: Color(0xFF0F0F0F),
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -124,7 +125,7 @@ class _VerificaoemailWidgetState extends State<VerificaoemailWidget> {
                         enablePinAutofill: false,
                         errorTextSpace: 16.0,
                         showCursor: true,
-                        cursorColor: FlutterFlowTheme.of(context).primary,
+                        cursorColor: Color(0xFF0B0B0B),
                         obscureText: false,
                         hintCharacter: '●',
                         keyboardType: TextInputType.number,
@@ -143,7 +144,7 @@ class _VerificaoemailWidgetState extends State<VerificaoemailWidget> {
                             topRight: Radius.circular(12.0),
                           ),
                           shape: PinCodeFieldShape.underline,
-                          activeColor: FlutterFlowTheme.of(context).primaryText,
+                          activeColor: Color(0xFF111111),
                           inactiveColor: Color(0xFF060606),
                           selectedColor: FlutterFlowTheme.of(context).primary,
                         ),
