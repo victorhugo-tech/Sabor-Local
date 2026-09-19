@@ -11,46 +11,28 @@ import '/flutter_flow/place.dart';
 import '/flutter_flow/uploaded_file.dart';
 
 bool validaCPF(String cpf) {
-// Remover caracteres indesejados
+// Mantém apenas os dígitos — funciona com ou sem pontuação (000.000.000-00)
+  final digits = cpf.replaceAll(RegExp(r'[^\d]'), '');
 
-  cpf = cpf.replaceAll(RegExp(r'[^\d]'), '');
-  //Remover hífen "-" e ponto "."
-  cpf = cpf.replaceAll("-", "").replaceAll(".", "");
-  if (cpf.length != 11) {
-    return false;
-  }
+  if (digits.length != 11) return false;
 
-  // Verificar se todos os dígitos são iguais
-  for (int i = 0; i < 10; i++) {
-    if (new RegExp(r'^[$i]{11}$').hasMatch(cpf)) {
-      return false;
+// Rejeita sequências com todos os dígitos iguais (00000000000, 11111111111...)
+  if (RegExp(r'^(\d)\1{10}$').hasMatch(digits)) return false;
+
+  final numbers = digits.split('').map(int.parse).toList();
+
+  int calcCheckDigit(List<int> nums, int startWeight) {
+    var sum = 0;
+    var weight = startWeight;
+    for (final n in nums) {
+      sum += n * weight--;
     }
+    final remainder = sum % 11;
+    return remainder < 2 ? 0 : 11 - remainder;
   }
 
-  // Calcular o primeiro dígito verificador
-  int sum = 0;
-  for (int i = 0; i < 9; i++) {
-    int weight = 10 - i;
-    sum += int.parse(cpf[i]) * weight;
-  }
-  int firstCheckDigit = 11 - (sum % 11);
-  if (firstCheckDigit >= 10) {
-    firstCheckDigit = 0;
-  }
+  final firstDigit = calcCheckDigit(numbers.sublist(0, 9), 10);
+  final secondDigit = calcCheckDigit(numbers.sublist(0, 10), 11);
 
-  // Calcular o segundo dígito verificador
-  sum = 0;
-  for (int i = 0; i < 10; i++) {
-    int weight = 11 - i;
-    sum += int.parse(cpf[i]) * weight;
-  }
-  int secondCheckDigit = 11 - (sum % 11);
-  if (secondCheckDigit >= 10) {
-    secondCheckDigit = 0;
-  }
-
-  // Verificar se os dígitos verificadores calculados são iguais
-  // aos dígitos verificadores fornecidos
-  return (int.parse(cpf[9]) == firstCheckDigit) &&
-      (int.parse(cpf[10]) == secondCheckDigit);
+  return numbers[9] == firstDigit && numbers[10] == secondDigit;
 }

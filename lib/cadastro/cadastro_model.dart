@@ -19,6 +19,7 @@ class CadastroModel extends FlutterFlowModel<CadastroWidget> {
   // State field(s) for TextFieldCPF widget.
   FocusNode? textFieldCPFFocusNode;
   TextEditingController? textFieldCPFTextController;
+  late MaskTextInputFormatter textFieldCPFMask;
   String? Function(BuildContext, String?)? textFieldCPFTextControllerValidator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode3;

@@ -57,25 +57,31 @@ class _VideoSplashWidgetState extends State<VideoSplashWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Color(0xFFF5E9DB),
-        body: Container(
-          width: 406.7,
-          height: 904.26,
-          decoration: BoxDecoration(
-            color: Color(0xFAF5E9DB),
-          ),
-          child: Padding(
-            padding: EdgeInsets.all(150.0),
-            child: FlutterFlowVideoPlayer(
-              path: 'assets/videos/WhatsApp_Video_2026-09-06_at_19.07.14.mp4',
-              videoType: VideoType.asset,
-              autoPlay: true,
-              looping: true,
-              showControls: false,
-              allowFullScreen: true,
-              allowPlaybackSpeedMenu: false,
-              pauseOnNavigate: false,
+        body: Stack(
+          children: [
+            Container(
+              width: 391.9,
+              height: 851.29,
+              decoration: BoxDecoration(
+                color: Color(0xFFEBE3D6),
+              ),
+              child: Opacity(
+                opacity: 0.9,
+                child: FlutterFlowVideoPlayer(
+                  path:
+                      'assets/videos/WhatsApp_Video_2026-09-06_at_19.07.14.mp4',
+                  videoType: VideoType.asset,
+                  aspectRatio: 1.0,
+                  autoPlay: true,
+                  looping: true,
+                  showControls: false,
+                  allowFullScreen: true,
+                  allowPlaybackSpeedMenu: false,
+                  pauseOnNavigate: false,
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
