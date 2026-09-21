@@ -2,20 +2,21 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'invalido_model.dart';
-export 'invalido_model.dart';
+import 'cadastroefetuado_model.dart';
+export 'cadastroefetuado_model.dart';
 
-class InvalidoWidget extends StatefulWidget {
-  const InvalidoWidget({super.key});
+class CadastroefetuadoWidget extends StatefulWidget {
+  const CadastroefetuadoWidget({super.key});
 
   @override
-  State<InvalidoWidget> createState() => _InvalidoWidgetState();
+  State<CadastroefetuadoWidget> createState() => _CadastroefetuadoWidgetState();
 }
 
-class _InvalidoWidgetState extends State<InvalidoWidget> {
-  late InvalidoModel _model;
+class _CadastroefetuadoWidgetState extends State<CadastroefetuadoWidget> {
+  late CadastroefetuadoModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -26,7 +27,7 @@ class _InvalidoWidgetState extends State<InvalidoWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => InvalidoModel());
+    _model = createModel(context, () => CadastroefetuadoModel());
   }
 
   @override
@@ -47,7 +48,7 @@ class _InvalidoWidgetState extends State<InvalidoWidget> {
             color: FlutterFlowTheme.of(context).secondaryBackground,
           ),
           child: FlutterFlowVideoPlayer(
-            path: 'assets/videos/Invalido.mp4',
+            path: 'assets/videos/Cadastro1.mp4',
             videoType: VideoType.asset,
             autoPlay: true,
             looping: true,
@@ -58,20 +59,20 @@ class _InvalidoWidgetState extends State<InvalidoWidget> {
           ),
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(90.0, 260.0, 90.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(80.0, 260.0, 9.0, 0.0),
           child: FFButtonWidget(
             onPressed: () async {
-              context.safePop();
+              context.pushNamed(HomePageWidget.routeName);
             },
-            text: 'Voltar',
+            text: 'Efetuar Login',
             icon: Icon(
-              Icons.keyboard_arrow_left,
+              Icons.login,
               size: 15.0,
             ),
             options: FFButtonOptions(
               height: 40.0,
               padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-              iconAlignment: IconAlignment.start,
+              iconAlignment: IconAlignment.end,
               iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: Color(0xFF060606),
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(

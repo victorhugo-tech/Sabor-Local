@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'invalido_widget.dart' show InvalidoWidget;
+import 'in_valido_widget.dart' show InValidoWidget;
 import 'package:flutter/material.dart';
 
-class InvalidoModel extends FlutterFlowModel<InvalidoWidget> {
+class InValidoModel extends FlutterFlowModel<InValidoWidget> {
   @override
   void initState(BuildContext context) {}
 

@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'valido_widget.dart' show ValidoWidget;
+import 'cadastroefetuado_widget.dart' show CadastroefetuadoWidget;
 import 'package:flutter/material.dart';
 
-class ValidoModel extends FlutterFlowModel<ValidoWidget> {
+class CadastroefetuadoModel extends FlutterFlowModel<CadastroefetuadoWidget> {
   @override
   void initState(BuildContext context) {}
 

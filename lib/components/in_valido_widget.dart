@@ -4,18 +4,18 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'valido_model.dart';
-export 'valido_model.dart';
+import 'in_valido_model.dart';
+export 'in_valido_model.dart';
 
-class ValidoWidget extends StatefulWidget {
-  const ValidoWidget({super.key});
+class InValidoWidget extends StatefulWidget {
+  const InValidoWidget({super.key});
 
   @override
-  State<ValidoWidget> createState() => _ValidoWidgetState();
+  State<InValidoWidget> createState() => _InValidoWidgetState();
 }
 
-class _ValidoWidgetState extends State<ValidoWidget> {
-  late ValidoModel _model;
+class _InValidoWidgetState extends State<InValidoWidget> {
+  late InValidoModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -26,7 +26,7 @@ class _ValidoWidgetState extends State<ValidoWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ValidoModel());
+    _model = createModel(context, () => InValidoModel());
   }
 
   @override
@@ -47,7 +47,7 @@ class _ValidoWidgetState extends State<ValidoWidget> {
             color: FlutterFlowTheme.of(context).secondaryBackground,
           ),
           child: FlutterFlowVideoPlayer(
-            path: 'assets/videos/Valido.mp4',
+            path: 'assets/videos/Invalido.mp4',
             videoType: VideoType.asset,
             autoPlay: true,
             looping: true,
@@ -58,12 +58,12 @@ class _ValidoWidgetState extends State<ValidoWidget> {
           ),
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(90.0, 260.0, 90.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(110.0, 260.0, 90.0, 0.0),
           child: FFButtonWidget(
             onPressed: () async {
               context.safePop();
             },
-            text: 'Continuar',
+            text: 'Voltar',
             icon: Icon(
               Icons.keyboard_arrow_right,
               size: 15.0,
