@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'in_valido_model.dart';
 export 'in_valido_model.dart';
 
@@ -57,43 +58,46 @@ class _InValidoWidgetState extends State<InValidoWidget> {
             pauseOnNavigate: false,
           ),
         ),
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(110.0, 260.0, 90.0, 0.0),
-          child: FFButtonWidget(
-            onPressed: () async {
-              context.safePop();
-            },
-            text: 'Voltar',
-            icon: Icon(
-              Icons.keyboard_arrow_right,
-              size: 15.0,
-            ),
-            options: FFButtonOptions(
-              height: 40.0,
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-              iconAlignment: IconAlignment.end,
-              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              color: Color(0xFF060606),
-              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                    font: GoogleFonts.interTight(
+        PointerInterceptor(
+          intercepting: isWeb,
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(110.0, 260.0, 90.0, 0.0),
+            child: FFButtonWidget(
+              onPressed: () async {
+                context.safePop();
+              },
+              text: 'Voltar',
+              icon: Icon(
+                Icons.keyboard_arrow_right,
+                size: 15.0,
+              ),
+              options: FFButtonOptions(
+                height: 40.0,
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                iconAlignment: IconAlignment.end,
+                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                color: Color(0xFF060606),
+                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                      font: GoogleFonts.interTight(
+                        fontWeight:
+                            FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                      ),
+                      color: Colors.white,
+                      letterSpacing: 0.0,
                       fontWeight:
                           FlutterFlowTheme.of(context).titleSmall.fontWeight,
                       fontStyle:
                           FlutterFlowTheme.of(context).titleSmall.fontStyle,
                     ),
-                    color: Colors.white,
-                    letterSpacing: 0.0,
-                    fontWeight:
-                        FlutterFlowTheme.of(context).titleSmall.fontWeight,
-                    fontStyle:
-                        FlutterFlowTheme.of(context).titleSmall.fontStyle,
-                  ),
-              elevation: 0.0,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20.0),
-                topRight: Radius.circular(20.0),
-                bottomLeft: Radius.circular(20.0),
-                bottomRight: Radius.circular(20.0),
+                elevation: 0.0,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0),
+                  bottomLeft: Radius.circular(20.0),
+                  bottomRight: Radius.circular(20.0),
+                ),
               ),
             ),
           ),

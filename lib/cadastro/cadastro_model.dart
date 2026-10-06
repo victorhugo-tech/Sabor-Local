@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'cadastro_widget.dart' show CadastroWidget;
@@ -30,6 +31,8 @@ class CadastroModel extends FlutterFlowModel<CadastroWidget> {
   TextEditingController? textController5;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? textController5Validator;
+  // Stores action output result for [Backend Call - API (signup)] action in Button widget.
+  ApiCallResponse? apiResultbsz;
 
   @override
   void initState(BuildContext context) {

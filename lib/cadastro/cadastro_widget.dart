@@ -1,7 +1,9 @@
+import '/backend/api_requests/api_calls.dart';
 import '/components/in_valido_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -894,7 +896,71 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                               0.0, 40.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              context.pushNamed(VerificaoemailWidget.routeName);
+                              var _shouldSetState = false;
+                              _model.apiResultbsz = await SignupCall.call(
+                                name: _model.textController1.text,
+                                password: _model.textController5.text,
+                                email: _model.textController4.text,
+                              );
+
+                              _shouldSetState = true;
+                              if ((_model.apiResultbsz?.succeeded ?? true)) {
+                                unawaited(
+                                  () async {
+                                    await ClienteCall.call(
+                                      celular: _model.textController2.text,
+                                      cpf: _model
+                                          .textFieldCPFTextController.text,
+                                    );
+                                  }(),
+                                );
+                                unawaited(
+                                  () async {
+                                    await SendGridCall.call(
+                                      email: _model.textController4.text,
+                                    );
+                                  }(),
+                                );
+
+                                context
+                                    .pushNamed(VerificaoemailWidget.routeName);
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Email enviado com sucesso!',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+                                if (_shouldSetState) safeSetState(() {});
+                                return;
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      '',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+                                if (_shouldSetState) safeSetState(() {});
+                                return;
+                              }
+
+                              if (_shouldSetState) safeSetState(() {});
                             },
                             text: 'Continuar',
                             icon: Icon(

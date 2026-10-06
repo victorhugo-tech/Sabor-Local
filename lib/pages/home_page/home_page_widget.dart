@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -66,18 +67,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     bottomRight: Radius.circular(10.0),
                   ),
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10.0),
-                    topRight: Radius.circular(10.0),
-                    bottomLeft: Radius.circular(10.0),
-                    bottomRight: Radius.circular(10.0),
-                  ),
-                  child: Image.asset(
-                    'assets/images/WhatsApp_Image_2026-09-06_at_19.09.03-removebg-preview.png',
-                    width: 200.0,
-                    height: 300.0,
-                    fit: BoxFit.fill,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10.0),
+                      topRight: Radius.circular(10.0),
+                      bottomLeft: Radius.circular(10.0),
+                      bottomRight: Radius.circular(10.0),
+                    ),
+                    child: Image.asset(
+                      'assets/images/WhatsApp_Image_2026-09-06_at_19.09.03-removebg-preview.png',
+                      width: 200.0,
+                      height: 300.0,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
               ),
@@ -385,7 +389,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          context.pushNamed(MenupedidosWidget.routeName);
+                          var _shouldSetState = false;
+                          _model.apiResultmuu = await LoginCall.call(
+                            email: _model.textController1.text,
+                            password: _model.textController2.text,
+                          );
+
+                          _shouldSetState = true;
+                          if ((_model.apiResultmuu?.succeeded ?? true)) {
+                            context.pushNamed(MenupedidosWidget.routeName);
+
+                            if (_shouldSetState) safeSetState(() {});
+                            return;
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Email ou senha incorretos!',
+                                  style: TextStyle(
+                                    color: Color(0xFFF4F5F6),
+                                  ),
+                                ),
+                                duration: Duration(milliseconds: 4000),
+                                backgroundColor: Color(0xFFF40509),
+                              ),
+                            );
+                            if (_shouldSetState) safeSetState(() {});
+                            return;
+                          }
+
+                          if (_shouldSetState) safeSetState(() {});
                         },
                         text: 'Entrar',
                         options: FFButtonOptions(

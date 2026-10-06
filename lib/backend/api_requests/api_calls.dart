@@ -49,6 +49,128 @@ class CepCall {
       ));
 }
 
+class SendGridCall {
+  static Future<ApiCallResponse> call({
+    String? email = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "email": ${email == null ? 'null' : '"${escapeStringForJson(email)}"'}
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'SendGrid',
+      apiUrl: 'https://x8ki-letl-twmt.n7.xano.io/api:2PHoUJhe/cadastrei',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ClienteCall {
+  static Future<ApiCallResponse> call({
+    String? celular = '',
+    String? cpf = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+"celular": ${celular == null ? 'null' : '"${escapeStringForJson(celular)}"'},
+"cpf": ${cpf == null ? 'null' : '"${escapeStringForJson(cpf)}"'}
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'cliente',
+      apiUrl: 'https://x8ki-letl-twmt.n7.xano.io/api:VM1MdIex/cliente',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class SignupCall {
+  static Future<ApiCallResponse> call({
+    String? name = '',
+    String? email = '',
+    String? password = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+"name": ${name == null ? 'null' : '"${escapeStringForJson(name)}"'},
+"email": ${email == null ? 'null' : '"${escapeStringForJson(email)}"'},
+"password": ${password == null ? 'null' : '"${escapeStringForJson(password)}"'}
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'signup',
+      apiUrl: 'https://x8ki-letl-twmt.n7.xano.io/api:AudoSZ5I/auth/signup',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? authToken(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.authToken''',
+      ));
+}
+
+class LoginCall {
+  static Future<ApiCallResponse> call({
+    String? email = '',
+    String? password = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+"email": ${email == null ? 'null' : '"${escapeStringForJson(email)}"'},
+"password": ${password == null ? 'null' : '"${escapeStringForJson(password)}"'}
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Login',
+      apiUrl: 'https://x8ki-letl-twmt.n7.xano.io/api:AudoSZ5I/auth/login',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? authToken(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.authToken''',
+      ));
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
@@ -91,4 +213,15 @@ String _serializeJson(dynamic jsonVar, [bool isList = false]) {
     }
     return isList ? '[]' : '{}';
   }
+}
+
+String? escapeStringForJson(String? input) {
+  if (input == null) {
+    return null;
+  }
+  return input
+      .replaceAll('\\', '\\\\')
+      .replaceAll('"', '\\"')
+      .replaceAll('\n', '\\n')
+      .replaceAll('\t', '\\t');
 }
