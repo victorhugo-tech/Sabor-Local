@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'endereco_widget.dart' show EnderecoWidget;
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class EnderecoModel extends FlutterFlowModel<EnderecoWidget> {
   ///  State fields for stateful widgets in this page.
@@ -10,7 +9,6 @@ class EnderecoModel extends FlutterFlowModel<EnderecoWidget> {
   // State field(s) for TextFieldcep widget.
   FocusNode? textFieldcepFocusNode;
   TextEditingController? textFieldcepTextController;
-  late MaskTextInputFormatter textFieldcepMask;
   String? Function(BuildContext, String?)? textFieldcepTextControllerValidator;
   // Stores action output result for [Backend Call - API (cep)] action in TextFieldcep widget.
   ApiCallResponse? apiResultiuj;
@@ -41,6 +39,8 @@ class EnderecoModel extends FlutterFlowModel<EnderecoWidget> {
   FocusNode? textFieldufFocusNode;
   TextEditingController? textFieldufTextController;
   String? Function(BuildContext, String?)? textFieldufTextControllerValidator;
+  // Stores action output result for [Backend Call - API (endereco)] action in Button widget.
+  ApiCallResponse? apiResultecn;
 
   @override
   void initState(BuildContext context) {}

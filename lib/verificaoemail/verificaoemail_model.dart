@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'verificaoemail_widget.dart' show VerificaoemailWidget;
@@ -10,6 +11,8 @@ class VerificaoemailModel extends FlutterFlowModel<VerificaoemailWidget> {
   TextEditingController? pinCodeController;
   FocusNode? pinCodeFocusNode;
   String? Function(BuildContext, String?)? pinCodeControllerValidator;
+  // Stores action output result for [Backend Call - API (OTP)] action in Button widget.
+  ApiCallResponse? apiResult0k9;
 
   @override
   void initState(BuildContext context) {

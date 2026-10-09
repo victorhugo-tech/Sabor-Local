@@ -15,7 +15,12 @@ import 'cadastro_model.dart';
 export 'cadastro_model.dart';
 
 class CadastroWidget extends StatefulWidget {
-  const CadastroWidget({super.key});
+  const CadastroWidget({
+    super.key,
+    required this.email,
+  });
+
+  final String? email;
 
   static String routeName = 'cadastro';
   static String routePath = '/cadastro';
@@ -905,6 +910,13 @@ class _CadastroWidgetState extends State<CadastroWidget> {
 
                               _shouldSetState = true;
                               if ((_model.apiResultbsz?.succeeded ?? true)) {
+                                FFAppState().authToken = SignupCall.authToken(
+                                  (_model.apiResultbsz?.jsonBody ?? ''),
+                                )!;
+                                FFAppState().userId = SignupCall.user(
+                                  (_model.apiResultbsz?.jsonBody ?? ''),
+                                )!;
+                                safeSetState(() {});
                                 unawaited(
                                   () async {
                                     await ClienteCall.call(
@@ -922,8 +934,15 @@ class _CadastroWidgetState extends State<CadastroWidget> {
                                   }(),
                                 );
 
-                                context
-                                    .pushNamed(VerificaoemailWidget.routeName);
+                                context.pushNamed(
+                                  VerificaoemailWidget.routeName,
+                                  queryParameters: {
+                                    'email': serializeParam(
+                                      _model.textController4.text,
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                );
 
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(

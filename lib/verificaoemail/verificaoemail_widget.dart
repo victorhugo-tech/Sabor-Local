@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -10,7 +11,12 @@ import 'verificaoemail_model.dart';
 export 'verificaoemail_model.dart';
 
 class VerificaoemailWidget extends StatefulWidget {
-  const VerificaoemailWidget({super.key});
+  const VerificaoemailWidget({
+    super.key,
+    String? email,
+  }) : this.email = email ?? '';
+
+  final String email;
 
   static String routeName = 'Verificaoemail';
   static String routePath = '/verificaoemail';
@@ -162,7 +168,51 @@ class _VerificaoemailWidgetState extends State<VerificaoemailWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    context.pushNamed(EnderecoWidget.routeName);
+                    var _shouldSetState = false;
+                    _model.apiResult0k9 = await OtpCall.call(
+                      codigoOpt: _model.pinCodeController!.text,
+                      email: widget.email,
+                    );
+
+                    _shouldSetState = true;
+                    if ((_model.apiResult0k9?.succeeded ?? true)) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Validado com sucesso',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
+
+                      context.pushNamed(EnderecoWidget.routeName);
+
+                      if (_shouldSetState) safeSetState(() {});
+                      return;
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Codigo invalido',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
+                      if (_shouldSetState) safeSetState(() {});
+                      return;
+                    }
+
+                    if (_shouldSetState) safeSetState(() {});
                   },
                   text: 'Verificar',
                   options: FFButtonOptions(

@@ -9,6 +9,7 @@ import '/flutter_flow/custom_functions.dart';
 import '/flutter_flow/lat_lng.dart';
 import '/flutter_flow/place.dart';
 import '/flutter_flow/uploaded_file.dart';
+import '/flutter_flow/ff_builtin_enums.dart';
 
 bool validaCPF(String cpf) {
 // Mantém apenas os dígitos — funciona com ou sem pontuação (000.000.000-00)

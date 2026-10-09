@@ -54,12 +54,11 @@ class SendGridCall {
     String? email = '',
   }) async {
     final ffApiRequestBody = '''
-{
-  "email": ${email == null ? 'null' : '"${escapeStringForJson(email)}"'}
-}''';
+{"email": ${email == null ? 'null' : '"${escapeStringForJson(email)}"'}}''';
     return ApiManager.instance.makeApiCall(
       callName: 'SendGrid',
-      apiUrl: 'https://x8ki-letl-twmt.n7.xano.io/api:2PHoUJhe/cadastrei',
+      apiUrl:
+          'https://x8ki-letl-twmt.n7.xano.io/api:AudoSZ5I/message/send_welcome_email',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -136,6 +135,10 @@ class SignupCall {
         response,
         r'''$.authToken''',
       ));
+  static int? user(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.user_id''',
+      ));
 }
 
 class LoginCall {
@@ -169,6 +172,76 @@ class LoginCall {
         response,
         r'''$.authToken''',
       ));
+  static int? user(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.user_id''',
+      ));
+}
+
+class OtpCall {
+  static Future<ApiCallResponse> call({
+    String? codigoOpt = '',
+    String? email = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "codigo": ${codigoOpt == null ? 'null' : '"${escapeStringForJson(codigoOpt)}"'},
+  "email": ${email == null ? 'null' : '"${escapeStringForJson(email)}"'}
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'OTP',
+      apiUrl: 'https://x8ki-letl-twmt.n7.xano.io/api:AudoSZ5I/auth/verify_otp',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class EnderecoCall {
+  static Future<ApiCallResponse> call({
+    String? authToken = '',
+    String? logradouro = '',
+    String? numero = '',
+    String? complemento = '',
+    String? referencia = '',
+    String? cep = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "logradouro": ${logradouro == null ? 'null' : '"${escapeStringForJson(logradouro)}"'},
+  "numero": ${numero == null ? 'null' : '"${escapeStringForJson(numero)}"'},
+  "complemento": ${complemento == null ? 'null' : '"${escapeStringForJson(complemento)}"'},
+  "referencia": ${referencia == null ? 'null' : '"${escapeStringForJson(referencia)}"'},
+  "cep": ${cep == null ? 'null' : '"${escapeStringForJson(cep)}"'}
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'endereco',
+      apiUrl: 'https://x8ki-letl-twmt.n7.xano.io/api:VM1MdIex/endereco',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': 'Bearer ${authToken}',
+        'Content-type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 class ApiPagingParams {
@@ -219,9 +292,6 @@ String? escapeStringForJson(String? input) {
   if (input == null) {
     return null;
   }
-  return input
-      .replaceAll('\\', '\\\\')
-      .replaceAll('"', '\\"')
-      .replaceAll('\n', '\\n')
-      .replaceAll('\t', '\\t');
+  final encoded = jsonEncode(input);
+  return encoded.substring(1, encoded.length - 1);
 }

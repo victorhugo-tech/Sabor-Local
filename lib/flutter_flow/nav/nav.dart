@@ -48,7 +48,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: CadastroWidget.routeName,
           path: CadastroWidget.routePath,
-          builder: (context, params) => CadastroWidget(),
+          builder: (context, params) => CadastroWidget(
+            email: params.getParam(
+              'email',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: VideoSplashWidget.routeName,
@@ -58,7 +63,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: VerificaoemailWidget.routeName,
           path: VerificaoemailWidget.routePath,
-          builder: (context, params) => VerificaoemailWidget(),
+          builder: (context, params) => VerificaoemailWidget(
+            email: params.getParam(
+              'email',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: EnderecoWidget.routeName,
@@ -207,6 +217,10 @@ class FFRoute {
                     duration: transitionInfo.duration,
                     reverseDuration: transitionInfo.duration,
                     alignment: transitionInfo.alignment,
+                    curve: transitionInfo.transitionType ==
+                            PageTransitionType.scale
+                        ? const Interval(0.0, 0.5)
+                        : Curves.linear,
                     child: child,
                   ).buildTransitions(
                     context,

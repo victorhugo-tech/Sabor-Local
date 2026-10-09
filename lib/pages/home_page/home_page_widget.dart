@@ -397,6 +397,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
                           _shouldSetState = true;
                           if ((_model.apiResultmuu?.succeeded ?? true)) {
+                            FFAppState().authToken = LoginCall.authToken(
+                              (_model.apiResultmuu?.jsonBody ?? ''),
+                            )!;
+                            FFAppState().userId = LoginCall.user(
+                              (_model.apiResultmuu?.jsonBody ?? ''),
+                            )!;
+                            safeSetState(() {});
+
                             context.pushNamed(MenupedidosWidget.routeName);
 
                             if (_shouldSetState) safeSetState(() {});
@@ -455,7 +463,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          context.pushNamed(CadastroWidget.routeName);
+                          context.pushNamed(
+                            CadastroWidget.routeName,
+                            queryParameters: {
+                              'email': serializeParam(
+                                '',
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                          );
                         },
                         text: 'Ainda nao tem cadastro? Clique aqui!',
                         icon: Icon(
